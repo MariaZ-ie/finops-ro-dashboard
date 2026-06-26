@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #0f172a;
+  }
+
+  body {
+    @apply bg-slate-50;
+  }
+
+  /* Override Tailwind's mono stack to use JetBrains Mono */
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace !important;
+  }
+}
+
+/* ─── Components ────────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Page & Shell ─────────────────────────────────────── */
+  .page-bg {
+    @apply bg-slate-50 min-h-screen;
+  }
+
+  /* bara de navigare de sus - efect de sticla mata */
+  .glass {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    @apply border-b border-gray-200/80 shadow-[0_1px_0_0_rgba(0,0,0,0.04)];
+  }
+
+  /* ── Cards ────────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-2xl border border-gray-100
+           shadow-[0_1px_3px_rgba(15,23,42,0.04),0_4px_16px_rgba(15,23,42,0.04)];
+  }
+
+  /* ── Form Controls ────────────────────────────────────── */
+  .select-dark,
+  .select-input {
+    @apply bg-white border border-gray-200 rounded-lg
+           px-2.5 py-1.5 pr-7
+           text-xs text-gray-700 font-medium
+           focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400
+           hover:border-gray-300
+           cursor-pointer appearance-none
+           transition-colors duration-150;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+  }
+
+  /* ── Status Badges ────────────────────────────────────── */
+  .badge-critical {
+    @apply inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full
+           text-xs font-semibold
+           bg-red-50 text-red-600 border border-red-100;
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full
+           text-xs font-semibold
+           bg-amber-50 text-amber-600 border border-amber-100;
+  }
+
+  .badge-online {
+    @apply inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full
+           text-xs font-semibold
+           bg-emerald-50 text-emerald-600 border border-emerald-100;
+  }
+
+  /* ── Section Header ───────────────────────────────────── */
+  .section-header {
+    @apply flex items-center justify-between mb-4;
+  }
+
+  .section-title {
+    @apply text-sm font-semibold text-gray-800 tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-xs text-gray-400 mt-0.5;
+  }
+
+  /* ── Tooltip (chart popups) ───────────────────────────── */
+  .chart-tooltip {
+    @apply bg-white border border-gray-200 rounded-xl px-3 py-2.5
+           shadow-[0_4px_16px_rgba(15,23,42,0.12),0_1px_4px_rgba(15,23,42,0.08)];
+  }
+}
+
+/* ─── Utilities ─────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-primary { @apply text-gray-900; }
+
+  /* Pulsing status dot */
+  .pulse-dot {
+    animation: pulse-glow 2.2s ease-in-out infinite;
+  }
+
+  /* Subtle fade-in for panels */
+  .fade-in {
+    animation: fade-in 0.2s ease-out;
+  }
+}
+
+/* ─── Keyframes ─────────────────────────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ─── Scrollbar (WebKit) ────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-gray-200 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-gray-300; }
