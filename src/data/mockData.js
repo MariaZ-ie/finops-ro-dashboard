@@ -1,9 +1,8 @@
-// ============================================================
-//  src/data/mockData.js
-//  Date simulate cu trenduri realiste si variate
-// ============================================================
 
-// ─── DIMENSIUNEA DATE ────────────────────────────────────────
+//  Date simulate cu trenduri realiste si variate
+
+
+//dimensiunea Date - genereaza toate lunile din 2024 si 2025
 export const dimDate = [];
 const MONTH_NAMES = [
   'Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
@@ -27,7 +26,7 @@ let dateId = 1;
   }
 });
 
-// ─── DIMENSIUNEA DEPARTAMENT ──────────────────────────────────
+//dimensiunea departament- cele 4 departamente utilizate
 export const dimDepartment = [
   { department_id: 1, dept_name: 'Engineering', cost_center: 'CC-ENG-01', team: 'Backend',   manager: 'Andrei Ionescu'   },
   { department_id: 2, dept_name: 'DevOps',      cost_center: 'CC-OPS-02', team: 'Platform',  manager: 'Maria Constantin' },
@@ -35,7 +34,7 @@ export const dimDepartment = [
   { department_id: 4, dept_name: 'Security',    cost_center: 'CC-SEC-04', team: 'InfoSec',   manager: 'Elena Dumitrescu' },
 ];
 
-// ─── DIMENSIUNEA SERVICIU ─────────────────────────────────────
+//dimensiunea serviciu - 10 servicii cloud grupate pe cei 3 furnizori
 export const dimService = [
   { service_id: 1,  service_name: 'EC2 Compute',   service_type: 'Compute',  category: 'Infrastructure', provider_name: 'AWS'   },
   { service_id: 2,  service_name: 'Azure VMs',      service_type: 'Compute',  category: 'Infrastructure', provider_name: 'Azure' },
@@ -49,14 +48,14 @@ export const dimService = [
   { service_id: 10, service_name: 'SageMaker AI',   service_type: 'AI/ML',    category: 'AI',             provider_name: 'AWS'   },
 ];
 
-// ─── DIMENSIUNEA PROVIDER ─────────────────────────────────────
+//dimensiunea provider - AWS, Azure, GCP
 export const dimProvider = [
   { provider_id: 1, provider_name: 'AWS',   account_id: 'aws-123456789', environment: 'production'  },
   { provider_id: 2, provider_name: 'Azure', account_id: 'az-987654321',  environment: 'production'  },
   { provider_id: 3, provider_name: 'GCP',   account_id: 'gcp-456789123', environment: 'development' },
 ];
 
-// ─── CONFIGURATIE TRENDURI ───────────────────────────────────
+//configurez trendurile ca sa nu iasa datele plate - sezonalitate si crestere în 2025
 const SEASON = [0.82, 0.78, 0.88, 0.95, 1.02, 1.08, 1.15, 1.22, 1.18, 1.28, 1.42, 1.38];
 const GROWTH_2025 = { 1: 1.25, 2: 1.15, 3: 1.40, 4: 1.05 };
 const BASE_MONTHLY = { 1: 14500, 2: 10200, 3: 7800, 4: 4200 };
@@ -73,7 +72,7 @@ function sr(seed) {
   return x - Math.floor(x);
 }
 
-// ─── FACT_COSTS ───────────────────────────────────────────────
+//  FACT_COSTS 
 export const factCosts = [];
 let costId = 1;
 
@@ -112,7 +111,7 @@ dimDate.forEach(dateRow => {
   });
 });
 
-// ─── FUNCTII HELPER ───────────────────────────────────────────
+//functiile helper pe care le folosesc in toate componentele, pentru filtrare si agregare
 
 export function filterFacts({ year, quarter, departmentId, providerId }) {
   const validDateIds = new Set(
