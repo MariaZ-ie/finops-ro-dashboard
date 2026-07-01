@@ -72,7 +72,7 @@ function sr(seed) {
   return x - Math.floor(x);
 }
 
-//  FACT_COSTS 
+//genereaza factCosts combinand toate dimensiunile de mai sus
 export const factCosts = [];
 let costId = 1;
 
